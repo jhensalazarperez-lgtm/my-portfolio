@@ -128,16 +128,16 @@
     /* --- PHOTOGRAPHY GRID FRAMEWORK --- */
     .photography-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
       margin-top: 24px;
       width: 100%;
     }
 
     .gallery-item {
       width: 100%;
-      height: 150px;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       border-radius: 10px;
       border: 1px solid #e5e5e5;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -163,11 +163,8 @@
     /* Mobile Responsive Optimizations */
     @media (max-width: 480px) {
       .photography-gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 10px;
-      }
-      .gallery-item {
-        height: 120px;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
       .modal-box {
         padding: 36px 20px 24px 20px;
@@ -433,9 +430,11 @@
       
       <div class="photography-gallery-grid">
         <img src="21b38354-5e1d-4953-9130-542cae0b1542.jpg" class="gallery-item" alt="Stacked balancing stones portrait shot">
-        <img src="88b719c0-30ab-4b84-9cc7-9592f4100c11.jpg" class="gallery-item" alt="Pink flowers growing upward along wall structure">
+        <img src="fcfe2bff-c903-4162-a14b-504e3962f5dc.jpg" class="gallery-item" alt="Pink flowers growing upward along wall structure">
         <img src="2652515b-b8d5-4368-b2de-a3a3c8a19a19.jpg" class="gallery-item" alt="Lush green plant leaves under warm sunlight">
-        <img src="fcfe2bff-c903-4162-a14b-504e3962f5dc.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
+        <img src="bcf9e4d7-b32c-45fe-a556-18eda1793aa2.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
+        <img src="8f628cf5-7db2-4237-9ac7-83b0b125e47b.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
+        <img src="bff3ba85-1c34-45e5-9a92-c72c7c67280d.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
       </div>
     </div>
   </div>
