@@ -36,23 +36,23 @@
       padding-bottom: 100px !important; 
     }
 
-    /* --- POP-UP MODAL ENGINE EXTRA STYLES --- */
+    /* --- PREMIUM POP-UP MODAL ENGINE --- */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5); 
-      backdrop-filter: blur(5px);    
+      background: rgba(10, 10, 10, 0.6); 
+      backdrop-filter: blur(8px);    
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 99999; 
-      padding: 16px; /* Prevents modal from hugging mobile screen edges */
+      padding: 20px;
       box-sizing: border-box;
     }
 
@@ -63,62 +63,64 @@
 
     .modal-box {
       background: #ffffff;
-      padding: 32px 24px;
-      border-radius: 16px;
-      max-width: 520px;
+      padding: 40px 32px 32px 32px;
+      border-radius: 20px;
+      max-width: 500px;
       width: 100%;
       position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      transform: scale(0.95) translateY(15px);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.96) translateY(10px);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       box-sizing: border-box;
-      max-height: 90vh; /* Ensures it never overflows the screen height on mobile */
-      overflow-y: auto;  /* Allows internal scrolling if content is long */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      max-height: 85vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
-    /* Extra large wrapper frame specifically for the photography gallery display layout */
+    /* Elegant wider layout option for visual galleries */
     .modal-box.gallery-modal {
-      max-width: 800px;
-      padding: 40px 24px;
+      max-width: 760px;
     }
 
     .modal-overlay.active .modal-box {
       transform: scale(1) translateY(0);
     }
 
-    /* Enhanced tap target size for close button on mobile phones */
+    /* Sleek top-right close boundary action */
     .close-btn {
       position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 36px;
+      top: 14px;
+      right: 18px;
+      font-size: 28px;
       font-weight: 300;
-      color: #a0a0a0;
+      color: #8c8c8c;
       cursor: pointer;
       line-height: 1;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
       user-select: none;
-      padding: 8px; /* Easier to tap with a finger */
+      padding: 10px;
     }
 
     .close-btn:hover {
-      color: #1a1a1a;
+      color: #111111;
+      transform: scale(1.08);
     }
 
     .modal-box h2 {
-      margin: 8px 0 16px 0;
-      font-size: 1.6rem;
+      margin: 0 0 14px 0;
+      font-size: 1.75rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: #111111;
       letter-spacing: -0.02em;
       font-family: 'Roboto Condensed', sans-serif;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 10px;
     }
 
     .modal-box p {
-      color: #555555;
-      line-height: 1.65;
-      font-size: 1rem;
+      color: #4a4a4a;
+      line-height: 1.7;
+      font-size: 1.05rem;
       margin: 0 0 16px 0;
       font-family: 'Roboto Condensed', sans-serif;
     }
@@ -126,45 +128,53 @@
     /* --- PHOTOGRAPHY GRID FRAMEWORK --- */
     .photography-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
       width: 100%;
     }
 
     .gallery-item {
       width: 100%;
-      height: 160px;
+      height: 150px;
       object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid #e2e0db;
-      transition: transform 0.2s ease;
+      border-radius: 10px;
+      border: 1px solid #e5e5e5;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       display: block;
     }
 
-    /* Hover effect disabled on true touch screens to prevent sticky-state bugs */
     @media (hover: hover) {
       .gallery-item:hover {
-        transform: scale(1.03);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      }
+      .services-card:hover, .featured-container:hover {
+        transform: translateY(-2px);
       }
     }
     
-    /* Clickable items mouse pointer indicator */
     .services-card, .featured-container {
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent; /* Prevents ugly mobile flash overlays */
+      transition: transform 0.2s ease;
     }
 
-    /* Mobile adjustments */
+    /* Mobile Responsive Optimizations */
     @media (max-width: 480px) {
       .photography-gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 8px;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
       }
       .gallery-item {
-        height: 130px;
+        height: 120px;
       }
       .modal-box {
-        padding: 36px 16px 20px 16px;
+        padding: 36px 20px 24px 20px;
+        max-height: 90vh;
+      }
+      .modal-box h2 {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -214,7 +224,7 @@
         </div>
         <div class="featured-divs">
           <!-- Card 1: Photography -->
-          <div class="featured-container" onclick="openModal('modal-photography')">
+          <div class="featured-container" data-modal-target="modal-photography">
             <div class="card-img-wrapper">
               <img src="photography.jpg" class="project-img" alt="Photography Collection">
             </div>
@@ -222,8 +232,8 @@
               <span class="project-name">Photography</span>
             </div>
           </div>
-          <!-- Card 2 -->
-          <div class="featured-container">
+          <!-- Card 2: Photoshop Edits -->
+          <div class="featured-container" data-modal-target="modal-webdesign">
             <div class="card-img-wrapper">
               <img src="ps-logo.jpg" class="project-img" alt="Photoshop edits">
             </div>
@@ -232,8 +242,8 @@
               <span class="project-tech"></span>
             </div>
           </div>
-          <!-- Card 3 -->
-          <div class="featured-container">
+          <!-- Card 3: Systems -->
+          <div class="featured-container" data-modal-target="modal-programming">
             <div class="card-img-wrapper">
               <img src="system-logo.jpg" class="project-img" alt="Systems">
             </div>
@@ -294,7 +304,7 @@
       
       <div class="services-panel-container">
         
-        <div class="services-card" onclick="openModal('modal-programming')">
+        <div class="services-card" data-modal-target="modal-programming">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -305,7 +315,7 @@
         </div>
 
         
-        <div class="services-card" onclick="openModal('modal-webdesign')">
+        <div class="services-card" data-modal-target="modal-webdesign">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
@@ -316,7 +326,7 @@
         </div>
 
         
-        <div class="services-card" onclick="openModal('modal-uiux')">
+        <div class="services-card" data-modal-target="modal-uiux">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="5" y="2" width="14" height="20" rx="2" />
@@ -327,7 +337,7 @@
         </div>
 
         
-        <div class="services-card" onclick="openModal('modal-consultation')">
+        <div class="services-card" data-modal-target="modal-consultation">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -377,10 +387,10 @@
             <span class="arrow-icon">→</span>
           </a>
 
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-card-link">
+          <a href="https://github.com/jhensalazarperez-lgtm" target="_blank" rel="noopener noreferrer" class="contact-card-link">
             <div class="contact-card-content">
               <span class="contact-card-label">GitHub</span>
-              <span class="contact-card-value">github.com/your-username</span>
+              <span class="contact-card-value">github.com/jhensalazarperez-lgtm</span>
             </div>
             <span class="arrow-icon">→</span>
           </a>
@@ -417,22 +427,22 @@
   <!-- Photography Gallery Modal -->
   <div id="modal-photography" class="modal-overlay">
     <div class="modal-box gallery-modal">
-      <span class="close-btn" onclick="closeModal('modal-photography')">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2>Photography Gallery</h2>
       <p>A collection of captured moments showcasing visual perspectives, lighting composition, and artistic framing choices.</p>
       
       <div class="photography-gallery-grid">
-        <img src="photo1.jpg" class="gallery-item" alt="Photography Shot 1">
-        <img src="photo2.jpg" class="gallery-item" alt="Photography Shot 2">
-        <img src="photo3.jpg" class="gallery-item" alt="Photography Shot 3">
-        <img src="photo4.jpg" class="gallery-item" alt="Photography Shot 4">
+        <img src="21b38354-5e1d-4953-9130-542cae728e51.jpg" class="gallery-item" alt="Stacked balancing stones portrait shot">
+        <img src="88b719c0-30ab-4b84-9cc7-9592f4165d2f.jpg" class="gallery-item" alt="Pink flowers growing upward along wall structure">
+        <img src="2652515b-b8d5-4368-b2de-a3a3c874f35b.jpg" class="gallery-item" alt="Lush green plant leaves under warm sunlight">
+        <img src="fcfe2bff-c903-4165-2a14b-504e39626e2e.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
       </div>
     </div>
   </div>
 
   <div id="modal-programming" class="modal-overlay">
     <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('modal-programming')">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2>Programming Services</h2>
       <p>Custom backend logic, clean API developments, automated scripts, and database management architectures tailored to your project requirements.</p>
     </div>
@@ -440,7 +450,7 @@
 
   <div id="modal-webdesign" class="modal-overlay">
     <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('modal-webdesign')">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2>Web Design Services</h2>
       <p>Creating highly functional, modern, and aesthetically stunning modern websites featuring responsive grid systems and fluid device compatibility.</p>
     </div>
@@ -448,7 +458,7 @@
 
   <div id="modal-uiux" class="modal-overlay">
     <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('modal-uiux')">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2>UI/UX Design</h2>
       <p>Wireframing, interactive prototyping, user journey mapping, and micro-interactions optimized for sleek user retention and clean presentation.</p>
     </div>
@@ -456,35 +466,48 @@
 
   <div id="modal-consultation" class="modal-overlay">
     <div class="modal-box">
-      <span class="close-btn" onclick="closeModal('modal-consultation')">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2>Consultation Services</h2>
       <p>Strategic technology alignment sessions, code refactoring deep-dives, architectural guidance, and development roadmapping workflows.</p>
     </div>
   </div>
 
-  <!-- JAVASCRIPT CONTROLLER -->
+  <!-- STABLE JAVASCRIPT CONTROLLER -->
   <script>
-    function openModal(modalId) {
-      const targetModal = document.getElementById(modalId);
-      if (targetModal) {
-        targetModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
+    // Safe, explicit modal opening workflow
+    document.querySelectorAll('[data-modal-target]').forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault(); // Blocks unexpected multi-touch mobile events
+        const targetId = this.getAttribute('data-modal-target');
+        const targetModal = document.getElementById(targetId);
+        
+        if (targetModal) {
+          targetModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
 
-    function closeModal(modalId) {
-      const targetModal = document.getElementById(modalId);
-      if (targetModal) {
-        targetModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
+    // Explicit close button hook setup
+    document.querySelectorAll('.close-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parentModal = this.closest('.modal-overlay');
+        if (parentModal) {
+          parentModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
 
-    window.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal-overlay')) {
-        event.target.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+    // Dark backdrop outer overlay close mechanism
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
     });
   </script>
 </body>
