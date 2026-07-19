@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhen's Portfolio</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght=0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -35,13 +39,135 @@
     .contact-page-container {
       padding-bottom: 100px !important; 
     }
+
+    /* --- MOBILE-OPTIMIZED MODAL OVERLAY ENGINE --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65); 
+      backdrop-filter: blur(8px);    
+      -webkit-backdrop-filter: blur(8px); /* Crucial for iOS Safari browser rendering */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-in-out;
+      z-index: 999999 !important; /* Forces layout context above fixed headers */
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      padding: 32px 24px;
+      border-radius: 16px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.25s ease-in-out;
+      box-sizing: border-box;
+      max-height: 80vh; 
+      overflow-y: auto;  
+      -webkit-overflow-scrolling: touch; /* Forces silky-smooth native scroll on iOS momentum */
+    }
+
+    .modal-box.gallery-modal {
+      max-width: 750px !important;
+      width: 100%;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Extra large tap zones for finger inputs on touch screens */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 38px;
+      font-weight: 300;
+      color: #888888;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+      padding: 12px; 
+      z-index: 20;
+    }
+
+    .close-btn:hover {
+      color: #000000;
+    }
+
+    .modal-box h2 {
+      margin: 8px 0 12px 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    .modal-box p {
+      color: #555555;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      margin: 0 0 20px 0;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+    
+    /* --- STRUCTURAL PHOTOGRAPHY MOBILE GRID --- */
+    .photography-gallery-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 12px !important;
+      margin-top: 16px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .gallery-item {
+      width: 100% !important;
+      height: 130px !important; 
+      object-fit: cover !important;
+      border-radius: 8px !important;
+      border: 1px solid #e2e0db !important;
+      display: block !important;
+    }
+
+    @media (min-width: 576px) {
+      .photography-gallery-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      .gallery-item {
+        height: 160px !important;
+      }
+    }
+    
+    /* --- FIX: CRUCIAL TO STOP CHILD CONTENT FROM BLOCKING TAPS ON PHONE --- */
+    .services-card, .featured-container {
+      cursor: pointer;
+      touch-action: manipulation; /* Removes the 300ms mobile tap delay */
+      user-select: none;
+    }
+    
+    .services-card *, .featured-container * {
+      pointer-events: none !important; /* Makes icons and labels transparent to touches, forcing event capture on parent */
+    }
   </style>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jhen's Portfolio</title>
 </head>
 <body>
+
   <div class="first-page-container">
       <div class="header">
         <nav class="navbar">
@@ -81,29 +207,29 @@
           <p class="featured-text">Featured Works</p>
         </div>
         <div class="featured-divs">
-          <!-- Card 1 -->
-          <div class="featured-container">
+          <!-- Photography Card with Mobile Target Hooks -->
+          <div class="featured-container" data-open-modal="modal-photography" role="button" tabindex="0">
             <div class="card-img-wrapper">
-              <img src="photography.jpg" class="project-img" alt="Coin Flip Game">
+              <img src="photography.jpg" class="project-img" alt="Photography Collection">
             </div>
             <div class="card-meta">
               <span class="project-name">Photography</span>
             </div>
           </div>
-          <!-- Card 2 -->
+          
           <div class="featured-container">
             <div class="card-img-wrapper">
-              <img src="ps-logo.jpg" class="project-img" alt="Amazon Clone">
+              <img src="ps-logo.jpg" class="project-img" alt="Photoshop edits">
             </div>
             <div class="card-meta">
               <span class="project-name">Photoshop edits</span>
               <span class="project-tech"></span>
             </div>
           </div>
-          <!-- Card 3 -->
+          
           <div class="featured-container">
             <div class="card-img-wrapper">
-              <img src="system-logo.jpg" class="project-img" alt="Rock Paper Scissors">
+              <img src="system-logo.jpg" class="project-img" alt="Systems">
             </div>
             <div class="card-meta">
               <span class="project-name">Systems</span>
@@ -113,7 +239,6 @@
       </div>
   </div> 
 
-  
   <div id="about-page" class="second-page-container">
     <div class="about-header">
       <h2 class="paragraph-about-me">About me</h2>
@@ -144,11 +269,9 @@
     </div>
   </div>
 
-  
   <div id="services-page" class="services-section-container">
     <div class="services-inner-wrapper">
       
-      <!-- Headline Intro Banner -->
       <div class="services-hero-section">
         <div class="services-left-col">
           <h2 class="services-headline">Any Type Of Service<br>And Discussions</h2>
@@ -160,11 +283,8 @@
         </div>
       </div>
 
-      
       <div class="services-panel-container">
-        
-        <!-- Pod 1: Programming -->
-        <div class="services-card">
+        <div class="services-card" data-open-modal="modal-programming" role="button" tabindex="0">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -174,8 +294,7 @@
           <span class="services-card-title">Programming</span>
         </div>
 
-        
-        <div class="services-card">
+        <div class="services-card" data-open-modal="modal-webdesign" role="button" tabindex="0">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
@@ -185,8 +304,7 @@
           <span class="services-card-title">Web Design</span>
         </div>
 
-        
-        <div class="services-card">
+        <div class="services-card" data-open-modal="modal-uiux" role="button" tabindex="0">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="5" y="2" width="14" height="20" rx="2" />
@@ -196,8 +314,7 @@
           <span class="services-card-title">UI/UX</span>
         </div>
 
-        
-        <div class="services-card">
+        <div class="services-card" data-open-modal="modal-consultation" role="button" tabindex="0">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -205,7 +322,6 @@
           </div>
           <span class="services-card-title">Consultation</span>
         </div>
-
       </div>
 
     </div>
@@ -213,8 +329,6 @@
 
   <div id="contact-page" class="contact-page-container">
     <div class="contact-content-grid">
-      
-      <!-- Left Column: Links and Socials -->
       <div class="contact-info-side">
         <div class="contact-header">
           <h2 class="paragraph-contact-title">Let's Connect</h2>
@@ -224,7 +338,6 @@
         </div>
 
         <div class="contact-links-list">
-        
           <a href="mailto:jhensalazarperez@gmail.com" class="contact-card-link">
             <div class="contact-card-content">
               <span class="contact-card-label">Email Me Directly</span>
@@ -232,7 +345,6 @@
             </div>
             <span class="arrow-icon">→</span>
           </a>
-
           <a href="https://www.linkedin.com/in/jhen-jhen-perez-0287103bb" target="_blank" rel="noopener noreferrer" class="contact-card-link">
             <div class="contact-card-content">
               <span class="contact-card-label">LinkedIn</span>
@@ -240,7 +352,6 @@
             </div>
             <span class="arrow-icon">→</span>
           </a>
-
           <a href="https://www.facebook.com/lincoln.rios.73" target="_blank" rel="noopener noreferrer" class="contact-card-link">
             <div class="contact-card-content">
               <span class="contact-card-label">Facebook</span>
@@ -248,7 +359,6 @@
             </div>
             <span class="arrow-icon">→</span>
           </a>
-
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-card-link">
             <div class="contact-card-content">
               <span class="contact-card-label">GitHub</span>
@@ -258,32 +368,157 @@
           </a>
         </div>
       </div>
-        
+      
       <div class="contact-form-side">
         <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
           <input type="hidden" name="access_key" value="39b9abe1-5cf8-413b-ba75-9e03a6b45854">
-
           <div class="form-group">
             <label for="name" class="form-label">Your Name</label>
             <input type="text" id="name" name="name" required placeholder="John Doe" class="form-input">
           </div>
-
           <div class="form-group">
             <label for="email" class="form-label">Email Address</label>
             <input type="email" id="email" name="email" required placeholder="john@example.com" class="form-input">
           </div>
-
           <div class="form-group">
             <label for="message" class="form-label">Your Message</label>
             <textarea id="message" name="message" rows="6" required placeholder="Hi Jhen, I would love to collaborate on..." class="form-textarea"></textarea>
           </div>
-
           <button type="submit" class="submit-button">Send Message</button>
         </form>
       </div>
-
     </div>
   </div>
 
+  <!-- --- MODAL STRUCTURAL CONTAINER MODULES --- -->
+  
+  <!-- Photography Modal -->
+  <div id="modal-photography" class="modal-overlay">
+    <div class="modal-box gallery-modal">
+      <span class="close-btn">&times;</span>
+      <h2>Photography Gallery</h2>
+      <p>A collection of captured moments showcasing visual perspectives, lighting composition, and artistic framing choices.</p>
+      
+      <div class="photography-gallery-grid">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500" class="gallery-item" alt="Landscape Photo">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500" class="gallery-item" alt="Nature Photo">
+        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=500" class="gallery-item" alt="Forest Photo">
+        <img src="https://images.unsplash.com/photo-1472214222541-d510753a4907?w=500" class="gallery-item" alt="Meadow Photo">
+      </div>
+    </div>
+  </div>
+
+  <!-- Programming Modal -->
+  <div id="modal-programming" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>Programming Services</h2>
+      <p>Custom backend logic, clean API developments, automated scripts, and database management architectures tailored to your project requirements.</p>
+    </div>
+  </div>
+
+  <!-- Web Design Modal -->
+  <div id="modal-webdesign" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>Web Design Services</h2>
+      <p>Creating highly functional, modern, and aesthetically stunning modern websites featuring responsive grid systems and fluid device compatibility.</p>
+    </div>
+  </div>
+
+  <!-- UI/UX Modal -->
+  <div id="modal-uiux" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>UI/UX Design</h2>
+      <p>Wireframing, interactive prototyping, user journey mapping, and micro-interactions optimized for sleek user retention and clean presentation.</p>
+    </div>
+  </div>
+
+  <!-- Consultation Modal -->
+  <div id="modal-consultation" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>Consultation Services</h2>
+      <p>Strategic technology alignment sessions, code refactoring deep-dives, architectural guidance, and development roadmapping workflows.</p>
+    </div>
+  </div>
+
+  <!-- --- JAVASCRIPT EVENT ENGINE --- -->
+  <script>
+    // Universal functions to open and close modal frameworks cleanly
+    function openModal(modalId) {
+      const targetModal = document.getElementById(modalId);
+      if (targetModal) {
+        targetModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevents background body scrolling
+      }
+    }
+
+    function closeModal(modalId) {
+      const targetModal = document.getElementById(modalId);
+      if (targetModal) {
+        targetModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restores body layout control
+      }
+    }
+
+    // Modern mobile event-binding registration system
+    document.addEventListener("DOMContentLoaded", function() {
+      
+      // 1. Hook up trigger targets (cards)
+      const triggers = document.querySelectorAll("[data-open-modal]");
+      triggers.forEach(function(element) {
+        const modalId = element.getAttribute("data-open-modal");
+        
+        // Listen to standard clicks
+        element.addEventListener("click", function() {
+          openModal(modalId);
+        });
+        
+        // Explicit touch listener for mobile performance
+        element.addEventListener("touchend", function(e) {
+          e.preventDefault(); // Prevents layout zooming/double clicks on mobile devices
+          openModal(modalId);
+        });
+      });
+
+      // 2. Hook up close buttons inside modals
+      const closeButtons = document.querySelectorAll(".close-btn");
+      closeButtons.forEach(function(btn) {
+        const parentModal = btn.closest(".modal-overlay");
+        if (parentModal) {
+          const modalId = parentModal.id;
+          
+          btn.addEventListener("click", function() {
+            closeModal(modalId);
+          });
+          
+          btn.addEventListener("touchend", function(e) {
+            e.preventDefault();
+            closeModal(modalId);
+          });
+        }
+      });
+
+      // 3. Close modal overlay cleanly when tapping outside the white box container
+      const overlays = document.querySelectorAll(".modal-overlay");
+      overlays.forEach(function(overlay) {
+        overlay.addEventListener("click", function(event) {
+          if (event.target === overlay) {
+            closeModal(overlay.id);
+          }
+        });
+        
+        overlay.addEventListener("touchend", function(event) {
+          if (event.target === overlay) {
+            event.preventDefault();
+            closeModal(overlay.id);
+          }
+        });
+      });
+      
+    });
+  </script>
 </body>
 </html>
