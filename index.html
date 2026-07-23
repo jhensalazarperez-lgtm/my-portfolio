@@ -4,201 +4,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght=0,100..900;1,100..900&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="my_portfolio.css">
   <link rel="stylesheet" href="about-page.css">
   <link rel="stylesheet" href="service-page.css">
   <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="modal.css">
 
-  <style>
-    html, body {
-      display: flex !important;
-      flex-direction: column !important;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    .contact-content-grid {
-      display: grid !important;
-      align-items: center !important; 
-    }
-
-    .contact-links-list {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 16px !important;
-      width: 100% !important;
-    }
-
-    .contact-page-container {
-      padding-bottom: 100px !important; 
-    }
-
-    /* --- PREMIUM POP-UP MODAL ENGINE --- */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 10, 10, 0.6); 
-      backdrop-filter: blur(8px);    
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      z-index: 99999; 
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-box {
-      background: #ffffff;
-      padding: 40px 32px 32px 32px;
-      border-radius: 20px;
-      max-width: 500px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      transform: scale(0.96) translateY(10px);
-      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      box-sizing: border-box;
-      max-height: 85vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    /* Elegant wider layout option for visual galleries */
-    .modal-box.gallery-modal {
-      max-width: 760px;
-    }
-
-    .modal-overlay.active .modal-box {
-      transform: scale(1) translateY(0);
-    }
-
-    /* Sleek top-right close boundary action */
-    .close-btn {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      font-size: 28px;
-      font-weight: 300;
-      color: #8c8c8c;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s ease, transform 0.2s ease;
-      user-select: none;
-      padding: 10px;
-    }
-
-    .close-btn:hover {
-      color: #111111;
-      transform: scale(1.08);
-    }
-
-    .modal-box h2 {
-      margin: 0 0 14px 0;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #111111;
-      letter-spacing: -0.02em;
-      font-family: 'Roboto Condensed', sans-serif;
-      border-bottom: 1px solid #f0f0f0;
-      padding-bottom: 10px;
-    }
-
-    .modal-box p {
-      color: #4a4a4a;
-      line-height: 1.7;
-      font-size: 1.05rem;
-      margin: 0 0 16px 0;
-      font-family: 'Roboto Condensed', sans-serif;
-    }
-    
-    /* --- PHOTOGRAPHY GRID FRAMEWORK --- */
-    .photography-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-      width: 100%;
-    }
-
-    .gallery-item {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 10px;
-      border: 1px solid #e5e5e5;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      display: block;
-    }
-
-    @media (hover: hover) {
-      .gallery-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      }
-      .services-card:hover, .featured-container:hover {
-        transform: translateY(-2px);
-      }
-    }
-    
-    .services-card, .featured-container {
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent; /* Prevents ugly mobile flash overlays */
-      transition: transform 0.2s ease;
-    }
-
-    /* Mobile Responsive Optimizations */
-    @media (max-width: 480px) {
-      .photography-gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-      .modal-box {
-        padding: 36px 20px 24px 20px;
-        max-height: 90vh;
-      }
-      .modal-box h2 {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* Project Link Button Styling */
-    .modal-project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      padding: 10px 20px;
-      background-color: #111111;
-      color: #ffffff;
-      text-decoration: none;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
-    }
-
-    .modal-project-link:hover {
-      background-color: #333333;
-    }
-  </style>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jhen's Portfolio</title>
+  <title>Jhen Perez | Portfolio</title>
 </head>
 <body>
   <div class="first-page-container">
@@ -216,6 +31,7 @@
           <ul class="nav-links">
             <li><a href="#home-page">Home</a></li>
             <li><a href="#about-page">About</a></li>
+            <li><a href="#feature-page">Projects</a></li>
             <li><a href="#services-page">Services</a></li>
             <li><a href="#contact-page">Contact</a></li>
           </ul>
@@ -224,9 +40,13 @@
 
       <div id="home-page" class="me-page">
         <div class="intro">
+          <p class="intro-eyebrow">Computer Science Student &amp; Frontend Developer</p>
           <h1 class="intro-text">
-            EXPLORING THE WORLD OF COMPUTER SCIENCE THROUGH CODE AND CREATIVITY.
+            Hi, I'm Jhen Perez. I build responsive websites, desktop applications, and modern user experiences.
           </h1>
+          <p class="intro-subtext">
+            Driven by curiosity and creativity, with a passion for exploring new ideas and transforming them into practical solutions through code.
+          </p>
         </div>
         <div class="my_photo">
           <div class="photo-frame">
@@ -236,17 +56,15 @@
       </div>
 
       <div id="feature-page" class="feature-page">
-        <div class="feature-work-text">
-          <p class="featured-text">Featured Works</p>
-        </div>
+        <p class="featured-text">Projects</p>
         <div class="featured-divs">
-          <!-- Card 1: Photography -->
-          <div class="featured-container" data-modal-target="modal-photography">
+          <!-- Card 1: Systems -->
+          <div class="featured-container" data-modal-target="modal-programming">
             <div class="card-img-wrapper">
-              <img src="photography.jpg" class="project-img" alt="Photography Collection">
+              <img src="system-logo.jpg" class="project-img" alt="Systems">
             </div>
             <div class="card-meta">
-              <span class="project-name">Photography</span>
+              <span class="project-name">Systems</span>
             </div>
           </div>
           <!-- Card 2: Photoshop Edits -->
@@ -259,13 +77,13 @@
               <span class="project-tech"></span>
             </div>
           </div>
-          <!-- Card 3: Systems -->
-          <div class="featured-container" data-modal-target="modal-programming">
+          <!-- Card 3: Photography -->
+          <div class="featured-container" data-modal-target="modal-photography">
             <div class="card-img-wrapper">
-              <img src="system-logo.jpg" class="project-img" alt="Systems">
+              <img src="photography.jpg" class="project-img" alt="Photography Collection">
             </div>
             <div class="card-meta">
-              <span class="project-name">Systems</span>
+              <span class="project-name">Photography</span>
             </div>
           </div>
         </div>
@@ -303,13 +121,82 @@
     </div>
   </div>
 
+  <!-- SKILLS SECTION -->
+  <div id="skills-page" class="skills-page">
+    <p class="skills-text">Skills</p>
+    <div class="skills-grid">
+      <div class="skills-category">
+        <div class="skills-category-header">
+          <div class="skills-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 6L2 12l6 6M16 6l6 6-6 6" />
+            </svg>
+          </div>
+          <p class="skills-category-title">Languages</p>
+        </div>
+        <div class="skills-tag-list">
+          <span>Python</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-category-header">
+          <div class="skills-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <p class="skills-category-title">Frameworks</p>
+        </div>
+        <div class="skills-tag-list">
+          <span>PyQt5</span>
+          <span>Flask</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-category-header">
+          <div class="skills-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+            </svg>
+          </div>
+          <p class="skills-category-title">Database</p>
+        </div>
+        <div class="skills-tag-list">
+          <span>MySQL</span>
+          <span>MariaDB</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-category-header">
+          <div class="skills-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.1 2.1-2.7-.7-.7-2.7 2.7-2.5z" />
+            </svg>
+          </div>
+          <p class="skills-category-title">Tools</p>
+        </div>
+        <div class="skills-tag-list">
+          <span>Git</span>
+          <span>GitHub</span>
+          <span>VS Code</span>
+          <span>Canva</span>
+          <span>Photoshop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
   <div id="services-page" class="services-section-container">
     <div class="services-inner-wrapper">
       
       <div class="services-hero-section">
         <div class="services-left-col">
-          <h2 class="services-headline">Any Type Of Service<br>And Discussions</h2>
+          <h2 class="services-headline">Services &amp;<br>Expertise</h2>
         </div>
         <div class="services-right-col">
           <p class="services-intro-para">
@@ -375,7 +262,7 @@
         <div class="contact-header">
           <h2 class="paragraph-contact-title">Let's Connect</h2>
           <p class="contact-subtitle">
-            Have an exciting project in mind, looking for a dedicated Virtual Assistant, or just want to say hello? Drop me a message!
+            Have a project in mind or want to collaborate? I'd love to hear from you — send me a message below.
           </p>
         </div>
 
@@ -452,9 +339,9 @@
         <img src="21b38354-5e1d-4953-9130-542cae0b1542.jpg" class="gallery-item" alt="Stacked balancing stones portrait shot">
         <img src="fcfe2bff-c903-4162-a14b-504e3962f5dc.jpg" class="gallery-item" alt="Pink flowers growing upward along wall structure">
         <img src="2652515b-b8d5-4368-b2de-a3a3c8a19a19.jpg" class="gallery-item" alt="Lush green plant leaves under warm sunlight">
-        <img src="bcf9e4d7-b32c-45fe-a556-18eda1793aa2.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
-        <img src="8f628cf5-7db2-4237-9ac7-83b0b125e47b.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
-        <img src="bff3ba85-1c34-45e5-9a92-c72c7c67280d.jpg" class="gallery-item" alt="Vibrant green leaf up close depth details shot">
+        <img src="bcf9e4d7-b32c-45fe-a556-18eda1793aa2.jpg" class="gallery-item" alt="Close-up shot of a green leaf showing depth and texture">
+        <img src="8f628cf5-7db2-4237-9ac7-83b0b125e47b.jpg" class="gallery-item" alt="Sunlit green leaves photographed from below">
+        <img src="bff3ba85-1c34-45e5-9a92-c72c7c67280d.jpg" class="gallery-item" alt="Macro shot of leaf veins and texture">
       </div>
     </div>
   </div>
@@ -477,7 +364,7 @@
     <div class="modal-box">
       <span class="close-btn">&times;</span>
       <h2>Photoshop Editing</h2>
-      <p>Wetchel, gin aadman pa nam.</p>
+      <p>A collection of photo edits showcasing color correction, retouching, and creative composition — blending technical precision with visual storytelling.</p>
     </div>
   </div>
 
@@ -534,6 +421,21 @@
         }
       });
     });
+
+    // Skills cards scroll-in reveal
+    const skillCards = document.querySelectorAll('.skills-category');
+    if (skillCards.length) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      skillCards.forEach(card => revealObserver.observe(card));
+    }
   </script>
 </body>
 </html>
