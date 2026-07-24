@@ -71,7 +71,6 @@
             </div>
             <div class="card-meta">
               <span class="project-name">Photoshop edits</span>
-              <span class="project-tech"></span>
             </div>
           </div>
           <!-- Card 3: Photography -->
@@ -100,7 +99,7 @@
       
       <div class="another-div">
         <div class="hello-im-jhen">
-          <h3 class="paragraph-hello">Hi, this is Jhen,</h3>
+          <h3 class="paragraph-hello">Hi, I'm Jhen Perez,</h3>
           <p class="description-text">
            A Computer Science student with a growing focus on frontend development. What started as curiosity about how websites work turned into a habit of building things, from a secure online voting system to a desktop records manager, because I like seeing an idea go from a sketch to something people can actually use. I care about clean, responsive interfaces and code that's easy to maintain, and I'm currently sharpening my skills in Flask and database design. When I'm not coding, you'll usually find me behind a camera or editing photos, a creative outlet that keeps my eye for detail sharp in both worlds.
           </p>
@@ -205,7 +204,7 @@
       
       <div class="services-panel-container">
         
-        <div class="services-card" data-modal-target="modal-programming">
+        <div class="services-card" data-modal-target="modal-service-programming">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -216,7 +215,7 @@
         </div>
 
         
-        <div class="services-card" data-modal-target="modal-webdesign">
+        <div class="services-card" data-modal-target="modal-service-webdesign">
           <div class="services-icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
@@ -381,7 +380,22 @@
     </div>
   </div>
 
-  <!-- STABLE JAVASCRIPT CONTROLLER -->
+  <div id="modal-service-programming" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>Programming</h2>
+      <p>Building efficient, maintainable software across web and desktop platforms, from database-backed systems to responsive interfaces, using Python, JavaScript, and Flask.</p>
+    </div>
+  </div>
+
+  <div id="modal-service-webdesign" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-btn">&times;</span>
+      <h2>Web Design</h2>
+      <p>Crafting responsive, visually engaging websites tailored to user needs, from wireframe to a fully coded, deployed site, with an emphasis on clean layout and usability.</p>
+    </div>
+  </div>
+
   <script>
     // Safe, explicit modal opening workflow
     document.querySelectorAll('[data-modal-target]').forEach(trigger => {
